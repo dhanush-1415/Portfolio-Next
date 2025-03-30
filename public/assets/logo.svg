@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="60" viewBox="0 0 120 60" fill="none">
+  <!-- Logo background -->
+  <rect width="120" height="60" rx="8" fill="none"/>
+  
+  <!-- First letter N -->
+  <path d="M20 15H28V45H20V15Z" fill="#4B0082"/>
+  <path d="M28 15H36L44 31V15H52V45H44L36 29V45H28V15Z" fill="#4B0082"/>
+  
+  <!-- Letter E -->
+  <path d="M56 15H80V23H64V27H75V35H64V37H80V45H56V15Z" fill="#4B0082"/>
+  
+  <!-- Letter X -->
+  <path d="M84 15H93L99 25L105 15H114L104 30L115 45H106L99 34L92 45H83L94 30L84 15Z" fill="#FFD700"/>
+  
+  <!-- Letter T -->
+  <path d="M63 33H73V41H63V33Z" fill="#FFD700"/>
+</svg>
