@@ -221,8 +221,12 @@ const ContactSection = ({ id }) => {
           </Typography>
         </Box>
 
-        <Grid container spacing={6}>
-          <Grid item xs={12} md={5}>
+        <Box sx={{ 
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '5fr 7fr' },
+          gap: 6
+        }}>
+          <Box>
             <Card 
               className="fade-in"
               elevation={0}
@@ -336,9 +340,9 @@ const ContactSection = ({ id }) => {
                 </Box>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
           
-          <Grid item xs={12} md={7}>
+          <Box>
             <Card 
               className="fade-in"
               elevation={0}
@@ -369,8 +373,12 @@ const ContactSection = ({ id }) => {
                   onSubmit={handleSubmit}
                   noValidate
                 >
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
+                  <Box sx={{ 
+                    display: 'grid',
+                    gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                    gap: 3
+                  }}>
+                    <Box>
                       <TextField
                         fullWidth
                         required
@@ -383,8 +391,8 @@ const ContactSection = ({ id }) => {
                         helperText={formErrors.name}
                         variant="outlined"
                       />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
+                    </Box>
+                    <Box>
                       <TextField
                         fullWidth
                         required
@@ -397,8 +405,8 @@ const ContactSection = ({ id }) => {
                         helperText={formErrors.email}
                         variant="outlined"
                       />
-                    </Grid>
-                    <Grid item xs={12}>
+                    </Box>
+                    <Box sx={{ gridColumn: { xs: 'span 1', sm: 'span 2' } }}>
                       <TextField
                         fullWidth
                         required
@@ -411,8 +419,8 @@ const ContactSection = ({ id }) => {
                         helperText={formErrors.subject}
                         variant="outlined"
                       />
-                    </Grid>
-                    <Grid item xs={12}>
+                    </Box>
+                    <Box sx={{ gridColumn: { xs: 'span 1', sm: 'span 2' } }}>
                       <TextField
                         fullWidth
                         required
@@ -427,8 +435,8 @@ const ContactSection = ({ id }) => {
                         multiline
                         rows={6}
                       />
-                    </Grid>
-                    <Grid item xs={12}>
+                    </Box>
+                    <Box sx={{ gridColumn: { xs: 'span 1', sm: 'span 2' } }}>
                       <Button
                         type="submit"
                         variant="contained"
@@ -445,13 +453,13 @@ const ContactSection = ({ id }) => {
                       >
                         Send Message
                       </Button>
-                    </Grid>
-                  </Grid>
+                    </Box>
+                  </Box>
                 </Box>
               </CardContent>
             </Card>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
       
       <Snackbar 

@@ -279,8 +279,14 @@ const TestimonialsSection = ({ id }) => {
           </Typography>
         </Box>
 
-        <Grid container justifyContent="center">
-          <Grid item xs={12} md={8}>
+        <Box sx={{ 
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+          <Box sx={{ 
+            width: { xs: '100%', md: '66.67%' },
+            maxWidth: '800px'
+          }}>
             <Box sx={{ position: 'relative', minHeight: 300 }}>
               {testimonials.map((testimonial, index) => (
                 <TestimonialCard 
@@ -351,8 +357,8 @@ const TestimonialsSection = ({ id }) => {
                 ))}
               </Box>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );
