@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Button, 
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
   useTheme,
+  IconButton,
+  Chip,
   useMediaQuery
 } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import {
+  ArrowForward,
+  GitHub,
+  LinkedIn,
+  Mail,
+  // Sparkles // Uncomment if using the badge
+} from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { scrollToSection } from '../utils/scrollUtils';
 import ThreeDAvatar from './3d/ThreeDAvatar';
@@ -17,7 +25,7 @@ import { Code, Layers, Database, Globe } from 'lucide-react';
 
 const GradientText = ({ children, delay = 0, variant = "h2", ...props }) => {
   const theme = useTheme();
-  
+
   return (
     <motion.div
       variants={textVariant(delay)}
@@ -30,8 +38,8 @@ const GradientText = ({ children, delay = 0, variant = "h2", ...props }) => {
         {...props}
         sx={{
           fontWeight: 700,
-          background: theme.palette.mode === 'light' 
-            ? 'linear-gradient(135deg, #4B0082 0%, #6F2DA8 100%)' 
+          background: theme.palette.mode === 'light'
+            ? 'linear-gradient(135deg, #4B0082 0%, #6F2DA8 100%)'
             : 'linear-gradient(135deg, #9370DB 0%, #B39DDB 100%)',
           backgroundClip: 'text',
           textFillColor: 'transparent',
@@ -49,7 +57,7 @@ const GradientText = ({ children, delay = 0, variant = "h2", ...props }) => {
 
 const IconBox = ({ icon, delay }) => {
   const theme = useTheme();
-  
+
   return (
     <motion.div
       variants={fadeIn('up', delay)}
@@ -88,7 +96,7 @@ const TechStack = () => {
     { icon: <Database size={24} />, delay: 0.4 },
     { icon: <Globe size={24} />, delay: 0.5 }
   ];
-  
+
   return (
     <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
       {techIcons.map((tech, index) => (
@@ -115,8 +123,18 @@ const HeroSection = ({ id }) => {
     }
   };
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleEmailClick = () => {
+    window.location.href = "mailto:workofdhanu@gmail.com";
+  };
+
   return (
-    <Box 
+    <Box
       id={id}
       component="section"
       sx={{
@@ -127,8 +145,8 @@ const HeroSection = ({ id }) => {
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        background: theme.palette.mode === 'light' 
-          ? 'linear-gradient(135deg, rgba(248,249,250,1) 0%, rgba(232,236,241,1) 100%)' 
+        background: theme.palette.mode === 'light'
+          ? 'linear-gradient(135deg, rgba(248,249,250,1) 0%, rgba(232,236,241,1) 100%)'
           : 'linear-gradient(135deg, rgba(18,18,18,1) 0%, rgba(33,33,33,1) 100%)',
       }}
     >
@@ -148,8 +166,8 @@ const HeroSection = ({ id }) => {
           width: '40vw',
           height: '40vw',
           borderRadius: '50%',
-          background: theme.palette.mode === 'light' 
-            ? 'radial-gradient(circle, rgba(75,0,130,0.07) 0%, rgba(75,0,130,0) 70%)' 
+          background: theme.palette.mode === 'light'
+            ? 'radial-gradient(circle, rgba(75,0,130,0.07) 0%, rgba(75,0,130,0) 70%)'
             : 'radial-gradient(circle, rgba(147,112,219,0.07) 0%, rgba(147,112,219,0) 70%)',
           top: '-20vw',
           right: '-20vw',
@@ -172,8 +190,8 @@ const HeroSection = ({ id }) => {
           width: '30vw',
           height: '30vw',
           borderRadius: '50%',
-          background: theme.palette.mode === 'light' 
-            ? 'radial-gradient(circle, rgba(255,215,0,0.07) 0%, rgba(255,215,0,0) 70%)' 
+          background: theme.palette.mode === 'light'
+            ? 'radial-gradient(circle, rgba(255,215,0,0.07) 0%, rgba(255,215,0,0) 70%)'
             : 'radial-gradient(circle, rgba(255,215,0,0.07) 0%, rgba(255,215,0,0) 70%)',
           bottom: '-10vw',
           left: '-10vw',
@@ -195,7 +213,7 @@ const HeroSection = ({ id }) => {
               alignItems: 'center'
             }}
           >
-            <Box>
+            {/* <Box>
               <motion.div variants={fadeIn('right', 0.2)}>
                 <Box 
                   sx={{ 
@@ -271,8 +289,215 @@ const HeroSection = ({ id }) => {
                   </motion.div>
                 </Box>
               </motion.div>
+            </Box> */}
+            <Box
+              sx={{
+                flex: 1,
+                textAlign: { xs: 'center', md: 'left' }
+              }}
+            >
+              <motion.div
+                variants={fadeIn('right', 0.3)}
+                initial="hidden"
+                animate="show"
+              >
+                {/* Optional Badge */}
+                <motion.div variants={textVariant(0.1)}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: { xs: 'center', md: 'flex-start' },
+                      gap: 2,
+                      mb: 4
+                    }}
+                  >
+                    {/* Uncomment to add badge
+        <Chip
+          label="INNOVATIVE CODE WIZARD"
+          icon={<Sparkles sx={{ fontSize: 14 }} />}
+          sx={{
+            px: 1.5,
+            py: 0.5,
+            bgcolor: 'primary.10',
+            border: '1px solid',
+            borderColor: 'primary.30',
+            borderRadius: '9999px',
+            fontFamily: 'monospace',
+            fontSize: '0.875rem',
+            color: 'primary.main',
+            '& .MuiChip-icon': {
+              color: 'primary.main',
+              animation: 'pulse 1.5s infinite'
+            }
+          }}
+        />
+        */}
+                  </Box>
+                </motion.div>
+
+                {/* Name/Title Section */}
+                <motion.div variants={textVariant(0.2)}>
+                  <Typography
+                    variant="h1"
+                    sx={{
+                      fontSize: { xs: '3rem', md: '4.5rem' },
+                      fontWeight: 700,
+                      mb: 4,
+                      lineHeight: '1.2',
+                      '& span': {
+                        display: 'block'
+                      }
+                    }}
+                  >
+                    <span>Hi, I'm</span>
+                    <Box
+                      component="span"
+                      sx={{
+                        background: 'linear-gradient(90deg, #8263c0, #88d3ce)',
+                        backgroundClip: 'text',
+                        textFillColor: 'transparent',
+                        textShadow: '0 0 10px rgba(110, 69, 226, 0.5)',
+                        animation: 'glow 2s ease-in-out infinite alternate'
+                      }}
+                    >
+                      {resumeData.personalInfo.name}
+                    </Box>
+                  </Typography>
+                </motion.div>
+
+                {/* Description */}
+                <motion.div variants={textVariant(0.3)}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: { xs: '1.125rem', md: '1.25rem' },
+                      mb: 4,
+                      maxWidth: '36rem',
+                      lineHeight: '1.75',
+                      '& span': {
+                        color: 'primary.main',
+                        fontWeight: 600
+                      }
+                    }}
+                  >
+                    Senior <span>Full Stack Developer</span> with 3+ years of specialized experience in
+                    <span> React.js, Node.js, and MySQL</span>.
+                    Expert in creating sophisticated, scalable web applications with exceptional UI/UX.
+                  </Typography>
+                </motion.div>
+
+                {/* Tech Stack */}
+                <TechStack />
+
+                {/* Buttons */}
+                <motion.div
+                  variants={fadeIn('up', 0.4)}
+                  style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', marginTop:'2rem' }}
+                  sx={{
+                    flexWrap: 'wrap',
+                    justifyContent: { xs: 'center', md: 'flex-start' },
+                    
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    onClick={() => scrollToSection('contact', 70)}
+                    sx={{
+                      px: 4,
+                      py: 1.75,
+                      borderRadius: '9999px',
+
+                      fontWeight: 500,
+                      background: 'linear-gradient(90deg, #6e45e2, #88d3ce)',
+                      boxShadow: '0 4px 15px rgba(110, 69, 226, 0.3)',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        boxShadow: '0 8px 25px rgba(110, 69, 226, 0.4)',
+                        transform: 'translateY(-2px)'
+                      }
+                    }}
+                  >
+                    Contact Me
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                      style={{ marginLeft: '0.5rem' }}
+                    >
+                      →
+                    </motion.span>
+                  </Button>
+
+                  <Button
+                    variant="outlined"
+                    onClick={() => scrollToSection('features', 70)}
+                    startIcon={<ArrowForward />}
+                    sx={{
+                      px: 4,
+                      py: 1.75,
+                      borderRadius: '9999px',
+                      fontWeight: 500,
+                      borderColor: 'primary.main',
+                      color: 'text.primary',
+                      backgroundColor: 'background.paper',
+                      backdropFilter: 'blur(8px)',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        boxShadow: '0 4px 15px rgba(110, 69, 226, 0.2)',
+                        borderColor: 'primary.light'
+                      }
+                    }}
+                  >
+                    Explore Features
+                  </Button>
+                </motion.div>
+
+                {/* Social Links */}
+                <motion.div
+                  variants={fadeIn('up', 0.5)}
+                  sx={{
+                    display: 'flex',
+                    gap: '0.75rem',
+                    justifyContent: { xs: 'center', md: 'flex-start' },
+                    p: 0.5,
+                    borderRadius: '9999px',
+                    backgroundColor: 'background.paper',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    width: 'fit-content',
+                    mx: { xs: 'auto', md: 0 }
+                  }}
+                >
+                  {[
+                    { icon: <GitHub />, href: 'https://github.com', label: 'GitHub' },
+                    { icon: <LinkedIn />, href: 'https://linkedin.com', label: 'LinkedIn' },
+                    { icon: <Mail />, onClick: handleEmailClick, label: 'Email' }
+                  ].map((social, index) => (
+                    <IconButton
+                      key={index}
+                      href={social.href}
+                      onClick={social.onClick}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      sx={{
+                        p: 1.25,
+                        backgroundColor: 'background.default',
+                        '&:hover': {
+                          backgroundColor: 'primary.main',
+                          color: 'common.white'
+                        },
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {social.icon}
+                    </IconButton>
+                  ))}
+                </motion.div>
+              </motion.div>
             </Box>
-            
+
             <Box>
               <motion.div
                 variants={fadeIn('left', 0.5)}
@@ -285,7 +510,9 @@ const HeroSection = ({ id }) => {
                     initial="hidden"
                     animate="show"
                   >
-                    <Box sx={{ aspectRatio: '1/1', position: 'relative', height: isMobile ? '280px' : '400px' }}>
+                    <Box sx={{
+                      aspectRatio: '1/1', position: 'relative', height: isMobile ? '50vh' : '450px'
+                    }}>
                       <Box
                         sx={{
                           position: 'absolute',
@@ -308,10 +535,10 @@ const HeroSection = ({ id }) => {
                       <Box
                         sx={{
                           position: 'absolute',
-                          inset: '12px',
+                          inset: '2px',
                           borderRadius: '50%',
                           background: 'linear-gradient(135deg, #4B0082 0%, #9370DB 100%)',
-                          p: '4px',
+                          p: '8px',
                           animation: 'morph 8s ease-in-out infinite',
                           '@keyframes morph': {
                             '0%': {
@@ -381,7 +608,7 @@ const HeroSection = ({ id }) => {
           </Box>
         </motion.div>
       </Container>
-      
+
       {/* Enhanced Floating particles */}
       <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
         {[...Array(40)].map((_, i) => (
@@ -392,7 +619,7 @@ const HeroSection = ({ id }) => {
               position: 'absolute',
               width: Math.random() * 15 + 5 + 'px',
               height: Math.random() * 15 + 5 + 'px',
-              backgroundColor: theme.palette.mode === 'light' 
+              backgroundColor: theme.palette.mode === 'light'
                 ? i % 2 === 0 ? 'rgba(75,0,130,0.15)' : 'rgba(255,215,0,0.15)'
                 : i % 2 === 0 ? 'rgba(147,112,219,0.15)' : 'rgba(255,215,0,0.15)',
               borderRadius: '50%',
@@ -418,9 +645,9 @@ const HeroSection = ({ id }) => {
           />
         ))}
       </Box>
-      
+
       {/* Shimmering light effect for added atmosphere */}
-      <Box 
+      <Box
         component={motion.div}
         animate={{
           opacity: [0.3, 0.5, 0.3],

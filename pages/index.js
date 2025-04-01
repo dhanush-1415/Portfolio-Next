@@ -2,15 +2,19 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import HeroSection from '../components/HeroSection';
-import FeaturesSection from '../components/FeaturesSection';
-import ServicesSection from '../components/ServicesSection';
-import TestimonialsSection from '../components/TestimonialsSection';
+// import FeaturesSection from '../components/FeaturesSection';
+// import ServicesSection from '../components/ServicesSection';
+// import TestimonialsSection from '../components/TestimonialsSection';
 import ContactSection from '../components/ContactSection';
+import AboutSection from '../components/AboutSection';
+import SkillsSection from '../components/SkillsSection';
+import ProjectsSection from   '../components/ProjectsSection';
+import ExperienceSection from '../components/ExperienceSection';
 import { handleScrollAnimation, getCurrentSection } from '../utils/scrollUtils';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
-  const sectionIds = ['hero', 'features', 'services', 'testimonials', 'contact'];
+  const sectionIds = ['hero', 'about',  'skills', 'experience', 'projects', 'contact'];
 
   useEffect(() => {
     // Set up scroll event listeners for animations and active section tracking
@@ -45,9 +49,13 @@ export default function Home() {
 
       <Layout activeSection={activeSection}>
         <HeroSection id="hero" />
-        <FeaturesSection id="features" />
+        <AboutSection id='about' />
+        <SkillsSection id='skills' />
+        <ExperienceSection id='experience' />
+        <ProjectsSection id='projects' />
+        {/* <FeaturesSection id="features" />
         <ServicesSection id="services" />
-        <TestimonialsSection id="testimonials" />
+        <TestimonialsSection id="testimonials" /> */}
         <ContactSection id="contact" />
       </Layout>
     </>
