@@ -555,7 +555,7 @@ const Footer = () => {
             variant="body2" 
             color="text.secondary"
           >
-            © {year}  Kavya{resumeData.personalInfo.name}. All rights reserved.
+            © {year} {resumeData.personalInfo.name}. All rights reserved.
           </Typography>
           <Typography 
             variant="body2" 

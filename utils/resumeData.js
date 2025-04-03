@@ -184,32 +184,6 @@ export const resumeData = {
     }
   ],
 
-  devOpsSkills: [
-    {
-      name: "Firebase",
-      percentage: 88,
-      description: "Authentication, Firestore, Cloud Functions, Hosting",
-      icon: "Flame"
-    },
-    {
-      name: "Docker",
-      percentage: 83,
-      description: "Containerization, multi-stage builds, Docker Compose",
-      icon: "BoxIcon"
-    },
-    {
-      name: "CI/CD Pipelines",
-      percentage: 80,
-      description: "GitHub Actions, automated testing, deployment workflows",
-      icon: "GitBranch"
-    },
-    {
-      name: "AWS Basics",
-      percentage: 75,
-      description: "EC2, S3, Lambda functions, basic infrastructure",
-      icon: "Cloud"
-    }
-  ],
 
   additionalSkills: [
     {
